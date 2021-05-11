@@ -20,8 +20,9 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import matplotlib.pyplot as plt
 from skimage import io
-
+import os
 import pickle
+import requests
 
 way_in_model =  tf.keras.Sequential([
     hub.KerasLayer("https://hub.tensorflow.google.cn/tensorflow/efficientnet/b0/feature-vector/1",
@@ -31,6 +32,11 @@ way_in_model.build([None, 224, 224, 3])
 
 pickle_in = open("K_means_model","rb")
 km = pickle.load(pickle_in)
+
+try:
+    os.mkdir('dataset')
+except:
+    pass
 
 def url_to_Kmean_class(url):
     img = io.imread(url)
@@ -42,12 +48,19 @@ list_listing=[]
 for i in listing_url:
     list_listing.append(i)
 
-for i in tqdm(range(28684,len(list_listing))):
-    for img in listing_url[list_listing[i]]:
+for i in tqdm(range(0,len(list_listing))):
+    try:
+        os.mkdir(f'dataset/{list_listing[i]}')
+    except:
+        pass
+    for id, img in enumerate(listing_url[list_listing[i]]):
         if (img=="MISSING"):
             break
         try:
             a=Table(img,list_listing[i],int(url_to_Kmean_class(img)))
+            response = requests.get(img)
+            with open(f'dataset/{list_listing[i]}/img{id}.jpg', 'wb') as f:
+                f.write(response.content)
             db.session.add(a)
             db.session.commit()
         except:
