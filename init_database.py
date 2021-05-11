@@ -52,7 +52,7 @@ for i in tqdm(range(0,len(list_listing))):
     try:
         os.mkdir(f'dataset/{list_listing[i]}')
     except:
-        pass
+        continue
     for id, img in enumerate(listing_url[list_listing[i]]):
         if (img=="MISSING"):
             break
