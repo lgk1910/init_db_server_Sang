@@ -1,0 +1,3 @@
+- Just running the file init_database.py 
+- The program will create a file test.db in the begining
+- Please sending me back the file test.db after the program print "MISSION COMPLETED". 
