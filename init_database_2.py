@@ -50,7 +50,7 @@ for i in listing_url:
 
 for i in tqdm(range(0,len(list_listing))):
     try:
-        os.mkdir('dataset2/'+str(list_listing[i]))
+        os.mkdir(f'dataset2/{list_listing[i]}')
     except:
         continue
     
@@ -58,9 +58,9 @@ for i in tqdm(range(0,len(list_listing))):
         if (img=="MISSING"):
             break
         try:
-            a=Table('dataset2/'+str(list_listing[i]) + '/img' + str(id) + '.jpg', list_listing[i],int(url_to_Kmean_class(img)))
+            a=Table(f'dataset2/{list_listing[i]}/img{id}.jpg', list_listing[i],int(url_to_Kmean_class(img)))
             response = requests.get(img)
-            with open('dataset2/'+str(list_listing[i]) + '/img' + str(id) + '.jpg', 'wb') as f:
+            with open(f'dataset2/{list_listing[i]}/img{id}.jpg', 'wb') as f:
                 f.write(response.content)
             db.session.add(a)
             db.session.commit()
