@@ -58,9 +58,9 @@ for i in tqdm(range(0,len(list_listing))):
         if (img=="MISSING"):
             break
         try:
-            a=Table(f'dataset2/{list_listing[i]}/img{id}.jpg', list_listing[i],int(url_to_Kmean_class(img)))
+            a=Table('dataset2/'+str(list_listing[i]) + '/img' + str(id) + '.jpg', list_listing[i],int(url_to_Kmean_class(img)))
             response = requests.get(img)
-            with open(f'dataset2/{list_listing[i]}/img{id}.jpg', 'wb') as f:
+            with open('dataset2/'+str(list_listing[i]) + '/img' + str(id) + '.jpg', 'wb') as f:
                 f.write(response.content)
             db.session.add(a)
             db.session.commit()
