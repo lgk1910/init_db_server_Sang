@@ -50,7 +50,7 @@ for i in listing_url:
 
 for i in tqdm(range(0,len(list_listing))):
     try:
-        os.mkdir(f'dataset2/{list_listing[i]}')
+        os.mkdir('dataset2/'+str(list_listing[i]))
     except:
         continue
     
