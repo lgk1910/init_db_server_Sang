@@ -1,4 +1,5 @@
 from flask import Flask, request
+from numpy.lib.arraysetops import unique
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -7,7 +8,7 @@ db = SQLAlchemy(app)
 
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    url=db.Column(db.String(200), nullable=False)
+    url=db.Column(db.String(200), unique=True, nullable=False)
     listing=db.Column(db.String(200), nullable=False)
     class_K_mean=db.Column(db.Integer, nullable=False)
     def __init__(self, url,listing,class_K_mean):
