@@ -24,6 +24,8 @@ import os
 import pickle
 import requests
 
+export TF_FORCE_GPU_ALLOW_GROWTH='true'
+
 way_in_model =  tf.keras.Sequential([
     hub.KerasLayer("https://hub.tensorflow.google.cn/tensorflow/efficientnet/b0/feature-vector/1",
                    trainable=False)
