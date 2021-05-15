@@ -64,7 +64,7 @@ for i in tqdm(range(28860,len(list_listing))):
                 f.write(response.content)
             db.session.add(a)
             db.session.commit()
-            print("passed")
+            # print("passed")
         except:
             pass
 
