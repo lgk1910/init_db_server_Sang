@@ -40,8 +40,8 @@ except:
 
 def url_to_Kmean_class(url):
     img = io.imread(url)
-    img=cv2.resize(img,(224,224))
-    img=(img/255.0).astype('float16')
+    img = cv2.resize(img,(224,224))
+    img = (img/255.0).astype('float16')
     return km.predict(way_in_model.predict(np.array([img])))[0]
 
 list_listing=[]
