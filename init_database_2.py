@@ -48,7 +48,7 @@ list_listing=[]
 for i in listing_url:
     list_listing.append(i)
 
-for i in tqdm(range(9010,len(list_listing))):
+for i in tqdm(range(26482,len(list_listing))):
     try:
         os.mkdir(f'dataset2/{list_listing[i]}')
     except:
